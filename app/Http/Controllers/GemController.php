@@ -106,7 +106,6 @@ class GemController extends Controller
 
         // Use existing QR Code path
         $qrCodePath = 'qrcodes/' . $gem->id . '.png';
-
         // Check if QR code exists
         if (!Storage::disk('public')->exists($qrCodePath)) {
             return back()->withErrors(['message' => 'QR code not found.']);

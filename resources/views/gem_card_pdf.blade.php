@@ -1,7 +1,7 @@
 <!-- resources/views/gem_card_pdf.blade.php -->
-@extends('layouts.app')
+@extends('layouts.custom')
 
-@section('title', 'Gem Identification')
+@section('title', 'Gem Report')
 
 @section('content')
     <style>

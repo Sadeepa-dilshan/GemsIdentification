@@ -1,20 +1,24 @@
 <!-- resources/views/gem_report.blade.php -->
-@extends('layouts.app')
+@extends('layouts.custom')
 
 @section('title', 'Gem Report')
 
 @section('content')
     <style>
-        .left-column, .right-column {
+         @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        .left-column {
             float: left;
             width: 50%;
-            box-sizing: border-box;
+            /* box-sizing: border-box; */
         }
-        .left-column img {
+        /* .left-column img {
             max-width: 100%;
             height: auto;
-        }
-        main {
+        } */
+        body {
             background: url('{{ public_path('images/gem.png') }}') no-repeat center center fixed;
             background-size: cover;
             width: 100%;
@@ -23,32 +27,46 @@
             padding: 0;
         }
         .left-column {
-            margin-top:8rem;
+            margin-top:9.5rem;
             margin-left:2rem;
         }
-        .right-column img {
-            width: 100px;
+        .right-img {
+            width: 150px;
             display: block;
             margin: 0 auto;
             max-width: 100%;
             height: auto;
-            margin-top: 1rem;
+            bottom: 50px;
             margin-left: 8rem;
         }
         .qr-code {
+            width: 100px;
             float: right;
             position: absolute;
-            bottom: 30; 
+            bottom: 50; 
             right: 0; 
-            margin-right:5rem !important;
+            margin-right:2rem !important;
             margin-bottom: 10px; 
             margin-right: 10px; 
         }
+        .centered-text {
+            font-size: 12px;
+            text-align: center;
+            width: 200px;
+            margin: 0 auto;
+            position: absolute;
+            top: 30%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+        .page-break {
+            page-break-after:never;
+        }
     </style>
-<main>
+<body>
         <div class="left-column">
-            <h6 class="" style="margin-bottom: 0;">RGLT Report: RGTL000{{$gem->id}}</h6>
-            <h6 class="" style="margin-top: 0; margin-bottom: 0;">{{$gem->created_at}}</h6>
+            <h6 class="mt-1" style="">RGLT Report: RGTL000{{$gem->id}}</h6>
+            <h6 class="" style="">{{$gem->created_at}}</h6>
 
             <h5 class="text-bold" style="margin-top:1rem; color: darkblue;">Identification</h5>
 
@@ -75,12 +93,13 @@
             <p style="font-size:12px;"><strong>Gemological characteristics indicates that stone is from:</strong></p>
             <h5 class="ml-5" >SRI LANKA</h5><br>
 
-            <img src="{{ public_path('images/GRD_page-0002.jpg') }}" alt="">
-            <p style="font-size: 12px; text-align: center; width: 200px; margin-left: 5rem;">
-                Here you can add any additional text or information that you want to appear on the right side of the PDF. This can inclu...
-            </p>            
+            <img class="right-img" src="{{ public_path('images/GRD_page-0002.jpg') }}" alt="">
+            <p class="centered-text">
+                Here you can add any additional text or information that you want to appear on the right side of the PDF. This can include...
+            </p>           
             <img class="qr-code" src="{{ public_path('storage/' . $qrCodePath) }}" alt="QR Code">
         </div>
         </div>
-</main>
-@endsection
+    </body>
+
+    @endsection
